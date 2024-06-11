@@ -1,6 +1,6 @@
-const fs = require('fs');
+const fs = require('fs'); //Modulo de NODE.JS para interactuar con el sistema de archivos y rutas locales
 const path = require('path');
-const PDFParser = require('pdf-parse');
+const PDFParser = require('pdf-parse'); // Clase de la libreria pdf-lib, para extraer info de adentro de los archivos
 
 // Ruta a la carpeta donde se encuentran los archivos PDF
 const folderPath = 'C:/Users/mcobos/Desktop/pdf';
@@ -8,14 +8,14 @@ const folderPath = 'C:/Users/mcobos/Desktop/pdf';
 // Patron para buscar dentro de la primer hoja del PDF
 const pattern = /\d{4}-\d{8}/;
 
-// Leer archivos en la carpeta
+// Leer archivos en la carpeta... "fs.readdir" es para leer archivos en el directorio, es propio de Node.js. Metodo que esta dentro del modulo fs
 fs.readdir(folderPath, (err, files) => {
   if (err) {
     console.error('Error al leer la carpeta:', err);
     return;
   }
 
-  // Iterar sobre cada archivo en la carpeta
+  // Iterar sobre cada archivo en la carpeta... path.join pertenece al modulo path de node.js, construimos la ruta del archivo
   files.forEach(file => {
     const filePath = path.join(folderPath, file);
     if (path.extname(filePath).toLowerCase() === '.pdf') {
